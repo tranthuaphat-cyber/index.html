@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AetherNova - Intelligent Collaboration Platform</title>
+    
+    <!-- Facebook Open Graph - chuẩn duyệt Facebook -->
+    <meta property="og:title" content="AetherNova - Intelligent Collaboration Platform for Modern Teams">
+    <meta property="og:description" content="Transform the way your team works. AetherNova combines AI, real-time collaboration, and powerful workflows in one beautiful platform.">
+    <meta property="og:image" content="https://picsum.photos/id/1015/1200/630">
+    <meta property="og:url" content="https://aethernova.example.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AetherNova">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #6366f1;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', system_ui, sans-serif;
+            font-weight: 600;
+        }
+
+        .section-header {
+            font-size: 2.75rem;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .nav-active {
+            color: #6366f1;
+            font-weight: 600;
+        }
+
+        .feature-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .nav-scrolled {
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            background-color: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
+        }
+
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+
+        .long-content p {
+            line-height: 1.75;
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 smooth-scroll">
+    <!-- NAVBAR -->
+    <nav id="navbar" class="bg-white border-b border-gray-100 sticky top-0 z-50 transition-all">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-11 h-11 bg-indigo-600 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-infinity text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-display text-3xl font-semibold tracking-tighter">AetherNova</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-9 text-sm font-medium">
+                    <a href="#features" class="hover:text-indigo-600 transition-colors">Features</a>
+                    <a href="#how" class="hover:text-indigo-600 transition-colors">How it Works</a>
+                    <a href="#pricing" class="hover:text-indigo-600 transition-colors">Pricing</a>
+                    <a href="#faq" class="hover:text-indigo-600 transition-colors">FAQ</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <!-- Dark mode toggle -->
+                    <button onclick="toggleDarkMode()" 
+                            class="w-10 h-10 flex items-center justify-center text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-2xl transition-colors">
+                        <i class="fa-solid fa-moon text-xl" id="theme-icon"></i>
+                    </button>
+                    
+                    <button onclick="showDemoModal()"
+                            class="hidden md:block px-5 py-2.5 text-sm font-semibold border border-gray-300 hover:bg-gray-50 rounded-3xl transition-all">
+                        Watch Demo
+                    </button>
+                    
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-3xl transition-all shadow-sm">
+                        Get Started Free
+                    </button>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden w-11 h-11 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t bg-white px-6 py-6">
+            <div class="flex flex-col gap-y-4 text-lg font-medium">
+                <a href="#features" class="py-1">Features</a>
+                <a href="#how" class="py-1">How it Works</a>
+                <a href="#pricing" class="py-1">Pricing</a>
+                <a href="#faq" class="py-1">FAQ</a>
+                <div class="pt-4 border-t flex flex-col gap-3">
+                    <button onclick="showDemoModal()" class="w-full py-3 border rounded-3xl font-semibold">Watch Demo</button>
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="w-full py-3 bg-indigo-600 text-white rounded-3xl font-semibold">Get Started Free</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="max-w-7xl mx-auto px-6 pt-16 pb-20">
+        <div class="grid md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-7">
+                <div class="inline-flex items-center gap-x-2 bg-indigo-50 text-indigo-700 px-4 py-1.5 rounded-3xl text-sm font-semibold mb-6">
+                    <div class="w-2 h-2 bg-indigo-600 rounded-full animate-pulse"></div>
+                    Now with AI Workflow Builder v2.0
+                </div>
+                
+                <h1 class="font-display text-6xl md:text-7xl leading-[1.05] tracking-tighter font-bold mb-6">
+                    The future of<br>team collaboration<br>is here.
+                </h1>
+                
+                <p class="max-w-lg text-xl text-gray-600 mb-10">
+                    AetherNova combines powerful AI, real-time editing, and beautiful workflows to help teams ship faster than ever.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                            class="px-9 py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-3xl text-lg flex items-center justify-center gap-x-2 transition-all shadow-lg shadow-indigo-200">
+                        Start 14-day free trial
+                        <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </button>
+                    <button onclick="showDemoModal()" 
+                            class="px-9 py-4 border border-gray-300 hover:bg-gray-50 font-semibold rounded-3xl text-lg flex items-center justify-center gap-x-2 transition-all">
+                        <i class="fa-solid fa-play mr-2"></i> 
+                        Watch 2-min demo
+                    </button>
+                </div>
+                
+                <div class="flex items-center gap-x-4 mt-8 text-sm text-gray-500">
+                    <div class="flex -space-x-2">
+                        <img src="https://picsum.photos/id/1005/32/32" class="w-8 h-8 rounded-full border-2 border-white" alt="">
+                        <img src="https://picsum.photos/id/1011/32/32" class="w-8 h-8 rounded-full border-2 border-white" alt="">
+                        <img src="https://picsum.photos/id/1009/32/32" class="w-8 h-8 rounded-full border-2 border-white" alt="">
+                    </div>
+                    <span>Joined by <strong>47,892</strong> teams this month</span>
+                </div>
+            </div>
+            
+            <div class="md:col-span-5 relative">
+                <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-gray-100">
+                    <img src="https://picsum.photos/id/1015/800/700" class="w-full aspect-[4/3.3] object-cover" alt="AetherNova Dashboard">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-5 rounded-2xl border">
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1">
+                                <div class="text-xs text-gray-500">CURRENTLY ONLINE</div>
+                                <div class="font-semibold">12,847 users</div>
+                            </div>
+                            <div class="text-emerald-600 flex items-center gap-1 text-sm font-medium">
+                                <i class="fa-solid fa-circle text-xs"></i> 
+                                <span>98% active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUSTED BY -->
+    <div class="border-y bg-gray-50 py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-70">
+                <div class="font-semibold text-xl tracking-widest">STRIPE</div>
+                <div class="font-semibold text-xl tracking-widest">NOTION</div>
+                <div class="font-semibold text-xl tracking-widest">LINEAR</div>
+                <div class="font-semibold text-xl tracking-widest">VERCEL</div>
+                <div class="font-semibold text-xl tracking-widest">OPENAI</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-5xl font-bold text-indigo-600 stat-number" data-target="47892">0</div>
+                <div class="text-gray-500 mt-2 font-medium">Active teams</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-indigo-600 stat-number" data-target="184">0</div>
+                <div class="text-gray-500 mt-2 font-medium">Countries</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-indigo-600 stat-number" data-target="2.4">0</div>
+                <div class="text-gray-500 mt-2 font-medium">Million tasks completed</div>
+            </div>
+            <div>
+                <div class="text-5xl font-bold text-indigo-600 stat-number" data-target="99.8">0</div>
+                <div class="text-gray-500 mt-2 font-medium">Uptime this year</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div id="features" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-14">
+            <div class="text-indigo-600 font-semibold tracking-[3px] text-sm mb-3">POWERFUL FEATURES</div>
+            <h2 class="section-header">Everything you need.<br>Nothing you don’t.</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Feature cards -->
+            <div class="feature-card bg-white border border-gray-100 p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-robot text-3xl"></i>
+                </div>
+                <h3 class="font-semibold text-2xl mb-3">AI Workflow Builder</h3>
+                <p class="text-gray-600">Describe what you want in plain English. Our AI builds the entire workflow in seconds.</p>
+            </div>
+            
+            <div class="feature-card bg-white border border-gray-100 p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-sync text-3xl"></i>
+                </div>
+                <h3 class="font-semibold text-2xl mb-3">Real-time Collaboration</h3>
+                <p class="text-gray-600">See cursors, comments, and changes live. Works even when teammates are offline.</p>
+            </div>
+            
+            <div class="feature-card bg-white border border-gray-100 p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-link text-3xl"></i>
+                </div>
+                <h3 class="font-semibold text-2xl mb-3">Smart Integrations</h3>
+                <p class="text-gray-600">Connect with Slack, Notion, Figma, GitHub, Linear, and 80+ other tools instantly.</p>
+            </div>
+            
+            <div class="feature-card bg-white border border-gray-100 p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-chart-line text-3xl"></i>
+                </div>
+                <h3 class="font-semibold text-2xl mb-3">Advanced Analytics</h3>
+                <p class="text-gray-600">Beautiful dashboards with AI insights on team productivity and bottlenecks.</p>
+            </div>
+            
+            <div class="feature-card bg-white border border-gray-100 p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-shield-halved text-3xl"></i>
+                </div>
+                <h3 class="font-semibold text-2xl mb-3">Enterprise Security</h3>
+                <p class="text-gray-600">SOC 2, GDPR, ISO 27001 certified. Role-based permissions and audit logs included.</p>
+            </div>
+            
+            <div class="feature-card bg-white border border-gray-100 p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-magic text-3xl"></i>
+                </div>
+                <h3 class="font-semibold text-2xl mb-3">Template Gallery</h3>
+                <p class="text-gray-600">Start fast with 200+ ready-to-use templates for marketing, product, HR, and engineering.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div id="how" class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-14">
+                <div class="text-indigo-600 font-semibold tracking-[3px] text-sm mb-3">SIMPLE PROCESS</div>
+                <h2 class="section-header">Get started in minutes,<br>not weeks.</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="mx-auto w-16 h-16 bg-white border flex items-center justify-center rounded-2xl mb-6 shadow-sm">
+                        <span class="font-display text-4xl font-bold text-indigo-600">1</span>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-2">Sign up in 30 seconds</h4>
+                    <p class="text-gray-600">No credit card required. Import your team from Slack or Google Workspace.</p>
+                </div>
+                <div class="text-center">
+                    <div class="mx-auto w-16 h-16 bg-white border flex items-center justify-center rounded-2xl mb-6 shadow-sm">
+                        <span class="font-display text-4xl font-bold text-indigo-600">2</span>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-2">Connect your tools</h4>
+                    <p class="text-gray-600">One-click connect with the tools you already use every day.</p>
+                </div>
+                <div class="text-center">
+                    <div class="mx-auto w-16 h-16 bg-white border flex items-center justify-center rounded-2xl mb-6 shadow-sm">
+                        <span class="font-display text-4xl font-bold text-indigo-600">3</span>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-2">Let AI build your first workflow</h4>
+                    <p class="text-gray-600">Type what you want. Our AI creates beautiful, functional workflows instantly.</p>
+                </div>
+                <div class="text-center">
+                    <div class="mx-auto w-16 h-16 bg-white border flex items-center justify-center rounded-2xl mb-6 shadow-sm">
+                        <span class="font-display text-4xl font-bold text-indigo-600">4</span>
+                    </div>
+                    <h4 class="font-semibold text-xl mb-2">Invite your team &amp; ship</h4>
+                    <p class="text-gray-600">Collaborate in real-time and watch productivity skyrocket.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <h2 class="section-header">Loved by teams at the world’s best companies.</h2>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white border p-8 rounded-3xl">
+                <div class="flex gap-1 text-amber-400 mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-lg">"AetherNova completely changed how we launch products. We went from 6 weeks to 9 days per release."</p>
+                <div class="mt-6 flex items-center gap-3">
+                    <img src="https://picsum.photos/id/1005/48/48" class="w-12 h-12 rounded-full" alt="">
+                    <div>
+                        <div class="font-semibold">Sarah Chen</div>
+                        <div class="text-sm text-gray-500">Head of Product @ Vercel</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white border p-8 rounded-3xl">
+                <div class="flex gap-1 text-amber-400 mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                </div>
+                <p class="text-lg">"The AI builder is scary good. It understood our complex approval process better than most humans on our team."</p>
+                <div class="mt-6 flex items-center gap-3">
+                    <img src="https://picsum.photos/id/1011/48/48" class="w-12 h-12 rounded-full" alt="">
+                    <div>
+                        <div class="font-semibold">Marcus Rodriguez</div>
+                        <div class="text-sm text-gray-500">COO @ Linear</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white border p-8 rounded-3xl">
+                <div class="flex gap-1 text-amber-400 mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-lg">"Best decision we made in 2025. Our remote team finally feels like we’re in the same room again."</p>
+                <div class="mt-6 flex items-center gap-3">
+                    <img src="https://picsum.photos/id/1009/48/48" class="w-12 h-12 rounded-full" alt="">
+                    <div>
+                        <div class="font-semibold">Priya Patel</div>
+                        <div class="text-sm text-gray-500">Founder &amp; CEO @ Notion Labs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRICING -->
+    <div id="pricing" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <h2 class="section-header">Simple, transparent pricing.</h2>
+            <p class="text-gray-600 mt-3">Cancel or change plan anytime. No hidden fees.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <!-- Starter -->
+            <div class="border border-gray-200 rounded-3xl p-8">
+                <div class="mb-8">
+                    <div class="font-semibold">Starter</div>
+                    <div class="mt-4 flex items-baseline">
+                        <span class="text-5xl font-bold">$0</span>
+                        <span class="text-gray-500 ml-1">/ forever</span>
+                    </div>
+                </div>
+                <ul class="space-y-3 mb-8 text-sm">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Up to 5 team members</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Basic AI features</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> 10 workflows</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Community support</li>
+                </ul>
+                <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                        class="w-full py-3 border border-gray-300 rounded-3xl font-semibold hover:bg-gray-50">Get started free</button>
+            </div>
+            
+            <!-- Pro - Popular -->
+            <div class="border-2 border-indigo-600 rounded-3xl p-8 relative scale-[1.02]">
+                <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-4 py-1 rounded-full">MOST POPULAR</div>
+                <div class="mb-8">
+                    <div class="font-semibold">Pro</div>
+                    <div class="mt-4 flex items-baseline">
+                        <span class="text-5xl font-bold">$29</span>
+                        <span class="text-gray-500 ml-1">/ user / month</span>
+                    </div>
+                </div>
+                <ul class="space-y-3 mb-8 text-sm">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Unlimited team members</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Full AI Workflow Builder</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Unlimited workflows &amp; templates</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Advanced analytics + AI insights</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Priority support</li>
+                </ul>
+                <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                        class="w-full py-3 bg-indigo-600 text-white rounded-3xl font-semibold">Start 14-day free trial</button>
+            </div>
+            
+            <!-- Enterprise -->
+            <div class="border border-gray-200 rounded-3xl p-8">
+                <div class="mb-8">
+                    <div class="font-semibold">Enterprise</div>
+                    <div class="mt-4 flex items-baseline">
+                        <span class="text-5xl font-bold">Custom</span>
+                    </div>
+                </div>
+                <ul class="space-y-3 mb-8 text-sm">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Everything in Pro</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> SSO + SCIM</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Custom integrations</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Dedicated success manager</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> On-premise option</li>
+                </ul>
+                <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                        class="w-full py-3 border border-gray-300 rounded-3xl font-semibold hover:bg-gray-50">Talk to sales</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ -->
+    <div id="faq" class="max-w-4xl mx-auto px-6 py-20">
+        <div class="text-center mb-12">
+            <h2 class="section-header">Frequently asked questions</h2>
+        </div>
+        
+        <div class="space-y-3">
+            <!-- FAQ items -->
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center px-8 py-6 text-left font-semibold">
+                    <span>Is there a free plan?</span>
+                    <i class="fa-solid fa-chevron-down transition-transform"></i>
+                </button>
+                <div class="accordion-content px-8 pb-6 text-gray-600">
+                    Yes. Our Starter plan is completely free forever and includes everything most small teams need.
+                </div>
+            </div>
+            
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center px-8 py-6 text-left font-semibold">
+                    <span>Can I cancel anytime?</span>
+                    <i class="fa-solid fa-chevron-down transition-transform"></i>
+                </button>
+                <div class="accordion-content px-8 pb-6 text-gray-600">
+                    Absolutely. You can cancel or downgrade your plan at any time from your account settings. No questions asked.
+                </div>
+            </div>
+            
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center px-8 py-6 text-left font-semibold">
+                    <span>Does AetherNova work offline?</span>
+                    <i class="fa-solid fa-chevron-down transition-transform"></i>
+                </button>
+                <div class="accordion-content px-8 pb-6 text-gray-600">
+                    Yes. All changes are saved locally and sync automatically when you're back online. Perfect for travel or unstable connections.
+                </div>
+            </div>
+            
+            <div class="faq-item border border-gray-200 rounded-2xl overflow-hidden">
+                <button onclick="toggleAccordion(this)" class="w-full flex justify-between items-center px-8 py-6 text-left font-semibold">
+                    <span>How secure is my data?</span>
+                    <i class="fa-solid fa-chevron-down transition-transform"></i>
+                </button>
+                <div class="accordion-content px-8 pb-6 text-gray-600">
+                    We are SOC 2 Type II, ISO 27001, and GDPR compliant. All data is encrypted at rest and in transit. We never sell or share your data.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FINAL CTA -->
+    <div class="bg-indigo-600 py-16">
+        <div class="max-w-4xl mx-auto px-6 text-center text-white">
+            <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-4">Ready to 10x your team’s output?</h2>
+            <p class="text-indigo-200 text-xl mb-8 max-w-md mx-auto">Join 47,892 teams already building the future with AetherNova.</p>
+            <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })" 
+                    class="px-10 py-4 bg-white text-indigo-600 hover:bg-gray-100 font-semibold rounded-3xl text-lg transition-all">
+                Start your free trial today
+            </button>
+            <div class="text-indigo-300 text-sm mt-4">No credit card required • Cancel anytime</div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact" class="max-w-3xl mx-auto px-6 py-20">
+        <div class="text-center mb-10">
+            <h2 class="section-header">Let’s get you started.</h2>
+            <p class="text-gray-600 mt-2">Our team will get back to you within 24 hours.</p>
+        </div>
+        
+        <form id="contact-form" onsubmit="handleFormSubmit(event)" class="bg-white border border-gray-200 p-8 md:p-10 rounded-3xl">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium mb-1.5">Full name</label>
+                    <input type="text" required class="w-full border border-gray-300 rounded-2xl px-5 py-3 focus:outline-none focus:border-indigo-400">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-1.5">Work email</label>
+                    <input type="email" required class="w-full border border-gray-300 rounded-2xl px-5 py-3 focus:outline-none focus:border-indigo-400">
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <label class="block text-sm font-medium mb-1.5">Company / Team size</label>
+                <select class="w-full border border-gray-300 rounded-2xl px-5 py-3 focus:outline-none focus:border-indigo-400">
+                    <option>Just me</option>
+                    <option>2-10 people</option>
+                    <option>11-50 people</option>
+                    <option>51-200 people</option>
+                    <option>200+ people</option>
+                </select>
+            </div>
+            
+            <div class="mt-6">
+                <label class="block text-sm font-medium mb-1.5">What are you looking to achieve?</label>
+                <textarea rows="4" required class="w-full border border-gray-300 rounded-2xl px-5 py-3 focus:outline-none focus:border-indigo-400" placeholder="Tell us about your team and goals..."></textarea>
+            </div>
+            
+            <button type="submit" 
+                    class="mt-8 w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-3xl transition-all">
+                Submit request
+            </button>
+            
+            <p class="text-center text-xs text-gray-500 mt-4">We respect your inbox. No spam, ever.</p>
+        </form>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 pt-14 pb-10 text-sm">
+            <div class="flex flex-col md:flex-row justify-between gap-y-8">
+                <div>
+                    <div class="flex items-center gap-x-3 mb-4">
+                        <div class="w-9 h-9 bg-indigo-600 rounded-2xl flex items-center justify-center">
+                            <i class="fa-solid fa-infinity text-white"></i>
+                        </div>
+                        <span class="font-display text-2xl font-semibold">AetherNova</span>
+                    </div>
+                    <div class="text-gray-500">Making teams faster since 2023.</div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-x-12 gap-y-8 text-gray-600">
+                    <div>
+                        <div class="font-semibold text-gray-900 mb-3">Product</div>
+                        <div class="space-y-2">
+                            <div>Features</div>
+                            <div>Integrations</div>
+                            <div>Templates</div>
+                            <div>Changelog</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-gray-900 mb-3">Company</div>
+                        <div class="space-y-2">
+                            <div>About</div>
+                            <div>Blog</div>
+                            <div>Careers</div>
+                            <div>Press</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-gray-900 mb-3">Resources</div>
+                        <div class="space-y-2">
+                            <div>Help Center</div>
+                            <div>Community</div>
+                            <div>Webinars</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-semibold text-gray-900 mb-3">Legal</div>
+                        <div class="space-y-2">
+                            <div>Privacy</div>
+                            <div>Terms</div>
+                            <div>Security</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t mt-12 pt-8 flex flex-col md:flex-row items-center justify-between text-gray-500 text-xs">
+                <div>© 2026 AetherNova, Inc. All rights reserved.</div>
+                <div class="mt-3 md:mt-0">Made with ❤️ for teams who ship.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div id="demo-modal" onclick="hideDemoModal()" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white max-w-4xl w-full rounded-3xl overflow-hidden shadow-2xl">
+            <div class="flex justify-between items-center px-8 py-5 border-b">
+                <div class="font-semibold text-xl">AetherNova in 2 minutes</div>
+                <button onclick="hideDemoModal()" class="text-3xl leading-none text-gray-400 hover:text-gray-600">×</button>
+            </div>
+            <div class="aspect-video bg-gray-900 flex items-center justify-center">
+                <div class="text-center text-white">
+                    <i class="fa-solid fa-play text-6xl mb-4 opacity-90"></i>
+                    <div class="font-medium">Demo video would play here</div>
+                    <div class="text-sm opacity-70 mt-1">(Replace with real video embed)</div>
+                </div>
+            </div>
+            <div class="p-8 text-center text-sm text-gray-500">
+                This is a fully functional demo modal. In production you would embed your actual product demo video here.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#6366f1');
+        }
+        
+        // Navbar scroll effect
+        function initNavbar() {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('nav-scrolled');
+                } else {
+                    navbar.classList.remove('nav-scrolled');
+                }
+            });
+            
+            // Mobile menu
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                } else {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                }
+            });
+        }
+        
+        // Stats counter animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            
+            stats.forEach(stat => {
+                const target = parseFloat(stat.getAttribute('data-target'));
+                const isDecimal = target % 1 !== 0;
+                let current = 0;
+                const increment = target / 80;
+                const duration = 1500;
+                const stepTime = duration / 80;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    if (isDecimal) {
+                        stat.textContent = current.toFixed(1);
+                    } else {
+                        stat.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, stepTime);
+            });
+        }
+        
+        // FAQ Accordion
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                // Close all others
+                document.querySelectorAll('.accordion-content').forEach(el => {
+                    el.style.maxHeight = null;
+                    const otherIcon = el.previousElementSibling.querySelector('i');
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                });
+                
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+        
+        // Form submit
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const originalText = form.querySelector('button').innerHTML;
+            
+            form.querySelector('button').innerHTML = 'Submitting...';
+            form.querySelector('button').disabled = true;
+            
+            setTimeout(() => {
+                form.innerHTML = `
+                    <div class="text-center py-12">
+                        <i class="fa-solid fa-check-circle text-emerald-500 text-6xl mb-6"></i>
+                        <h3 class="text-2xl font-semibold mb-2">Thank you!</h3>
+                        <p class="text-gray-600">We've received your request. Our team will contact you within 24 hours.</p>
+                    </div>
+                `;
+            }, 1200);
+        }
+        
+        // Demo Modal
+        function showDemoModal() {
+            document.getElementById('demo-modal').classList.remove('hidden');
+            document.getElementById('demo-modal').classList.add('flex');
+        }
+        
+        function hideDemoModal() {
+            const modal = document.getElementById('demo-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+        
+        // Dark mode
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+        
+        function initDarkMode() {
+            const savedTheme = localStorage.getItem('theme');
+            const icon = document.getElementById('theme-icon');
+            
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        }
+        
+        // Initialize everything
+        function initializeApp() {
+            initializeTailwind();
+            initNavbar();
+            initDarkMode();
+            
+            // Animate stats when in view
+            const statsSection = document.querySelector('.grid-cols-2');
+            if (statsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateStats();
+                            observer.disconnect();
+                        }
+                    });
+                });
+                observer.observe(statsSection);
+            }
+            
+            // Keyboard escape for modal
+            document.addEventListener('keydown', function(e) {
+                if (e.key === "Escape") {
+                    const modal = document.getElementById('demo-modal');
+                    if (!modal.classList.contains('hidden')) {
+                        hideDemoModal();
+                    }
+                }
+            });
+            
+            // Bonus: Make sure all FAQ icons start correctly
+            console.log('%c[AetherNova] Full-featured long landing page initialized successfully.', 'color:#6366f1');
+        }
+        
+        window.onload = initializeApp;
+    </script>
+</body>
+</html>
